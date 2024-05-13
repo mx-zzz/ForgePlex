@@ -1,0 +1,5 @@
+keep epochs low to not overfit
+learning rate low
+dont train with tthe same data for the more than a few epochs - causes overfitting
+start with small data sizes
+small batch size

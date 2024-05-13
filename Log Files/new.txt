@@ -1,0 +1,170 @@
+model name: new 
+nn_sucsess: 36.38
+control_sucsess: 33.98
+mse: 3.492
+mse_zero: 2.3347
+time : 2024-02-01 23:20:34
+
+
+
+
+model name: new 
+nn_sucsess: 36.6
+control_sucsess: 32.18
+mse: 3.248
+mse_zero: 2.4897
+time : 2024-02-01 23:28:39
+
+
+
+
+model name: new 
+nn_sucsess: 36.870000000000005
+control_sucsess: 32.29
+mse: 3.375
+mse_zero: 2.4591
+time : 2024-02-01 23:33:48
+
+
+
+
+model name: new 
+nn_sucsess: 36.33
+control_sucsess: 32.12
+mse: 3.3053
+mse_zero: 2.4495
+time : 2024-02-01 23:33:54
+
+
+
+
+model name: new 
+nn_sucsess: 36.77
+control_sucsess: 32.029999999999994
+mse: 3.3322
+mse_zero: 2.4999
+time : 2024-02-01 23:34:01
+
+
+
+
+model name: new 
+nn_sucsess: 36.94
+control_sucsess: 32.629999999999995
+mse: 3.2845
+mse_zero: 2.4171
+time : 2024-02-01 23:34:09
+
+
+
+
+model name: new 
+nn_sucsess: 37.54
+control_sucsess: 32.57
+mse: 3.4039
+mse_zero: 2.5082
+time : 2024-02-01 23:34:51
+
+
+
+
+model name: new 
+nn_sucsess: 38.379999999999995
+control_sucsess: 33.94
+mse: 3.3036
+mse_zero: 2.4157
+time : 2024-02-01 23:35:10
+
+
+
+
+model name: new 
+nn_sucsess: 37.8
+control_sucsess: 33.42
+mse: 3.37
+mse_zero: 2.4801
+time : 2024-02-01 23:35:23
+
+
+
+
+model name: new 
+nn_sucsess: 37.3
+control_sucsess: 32.800000000000004
+mse: 3.2
+mse_zero: 2.4198
+time : 2024-02-01 23:41:24
+
+
+
+
+model name: new 
+nn_sucsess: 37.980000000000004
+control_sucsess: 33.0
+mse: 3.2801
+mse_zero: 2.4685
+time : 2024-02-01 23:42:19
+
+
+
+
+model name: new 
+nn_sucsess: 37.93
+control_sucsess: 32.9
+mse: 3.29
+mse_zero: 2.4704
+time : 2024-02-01 23:42:58
+
+
+
+
+model name: new 
+nn_sucsess: 38.26
+control_sucsess: 33.32
+mse: 3.0569
+mse_zero: 2.4689
+time : 2024-02-01 23:54:04
+
+
+
+
+model name: new 
+nn_sucsess: 38.49
+control_sucsess: 33.12
+mse: 3.0653
+mse_zero: 2.4464
+time : 2024-02-01 23:54:11
+
+
+
+
+model name: new 
+nn_sucsess: 38.86
+control_sucsess: 33.31
+mse: 3.2719
+mse_zero: 2.4573
+time : 2024-02-01 23:59:40
+
+
+
+
+model name: new 
+nn_sucsess: 39.09
+control_sucsess: 33.26
+mse: 3.1613
+mse_zero: 2.4792
+time : 2024-02-01 23:59:46
+
+
+
+
+model name: new 
+nn_sucsess: 38.07
+control_sucsess: 33.56
+mse: 3.3552
+mse_zero: 2.4137
+time : 2024-02-01 23:59:53
+
+
+
+

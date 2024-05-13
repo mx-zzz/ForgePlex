@@ -1,0 +1,10 @@
+model name: test 
+nn_sucsess: 7.88
+control_sucsess: 32.379999999999995
+mse: 6.3879
+mse_zero: 2.4513
+time : 2024-02-03 16:08:39
+
+
+
+

@@ -1,0 +1,20 @@
+model name: new 
+nn_sucsess: 32.9
+control_sucsess: 32.46
+mse: 4.2843
+mse_zero: 2.4912
+time : 2024-02-04 21:05:43
+
+
+
+
+model name: new 
+nn_sucsess: 33.37
+control_sucsess: 33.39
+mse: 4.2142
+mse_zero: 2.493
+time : 2024-02-04 21:07:28
+
+
+
+
