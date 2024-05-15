@@ -15,14 +15,23 @@ The Neural Network Development Application is a streamlined tool designed for tr
 
 ### Prerequisites
 - Python 3.8 or later
-- TensorFlow 2.x
-- GPU with CUDA support for TensorFlow operations
-
+- TensorFlow 2.x for deep learning algorithms
+- PyQt6 for the graphical user interface
+- A GPU with CUDA support for TensorFlow operations to enhance performance
+- 
 ### Installation
 Clone the repository to your local machine:
+```bash
+git clone https://github.com/forgeplex
+```
 
-### License
-Not for commercial purpose or to be copied
+## License and Legal Information
+
+Unauthorized copying, reproduction, or distribution of this code, via any medium, is strictly prohibited. The code and related materials provided in this repository are intended solely for educational and personal use. Commercial use is not permitted without express permission from the project creator.
+
+For inquiries regarding permissions, please contact the project creator at [Max Medina-Du cros LinkedIn](https://www.linkedin.com/in/max-medina-du-cros-782516283/).
+
+© 2024 Max Medina-Du cros. All rights reserved.
 
 ### Contact
 Contact the project creator at https://www.linkedin.com/in/max-medina-du-cros-782516283/
