@@ -11,7 +11,7 @@ class Test_Log():
 
 
     def add_log(self):
-        with (open("Log Files\\Testing Log\\" + self.model_name + ".txt", 'a') as file):
+        with (open("Log Files\\Testing_Menu Log\\" + self.model_name + ".txt", 'a') as file):
             current_datetime = datetime.now()
             formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
 

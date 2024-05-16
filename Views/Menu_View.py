@@ -17,7 +17,9 @@ class Menu_View(QMainWindow):
         # Set window title and size
         self.setWindowTitle('ForgePlex')
         self.resize(500, 300)
-        self.setWindowIcon(QIcon('Icons\\Icon3.png'))
+        self.setFixedWidth(500)
+        self.setFixedHeight(300)
+        self.setWindowIcon(QIcon('Icons\\Icon1.png'))
 
         # Create central widget and layout
         central_widget = QWidget(self)

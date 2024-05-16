@@ -95,7 +95,7 @@ class Network_Handler:
         self.X_train, self.Y_train = self.data_handler.fetch_data(selected_data_set_size,"Training")
 
     def load_testing_data(self,selected_data_set_size):
-        self.X_test, self.Y_test = self.data_handler.fetch_data(selected_data_set_size,"Testing")
+        self.X_test, self.Y_test = self.data_handler.fetch_data(selected_data_set_size,"Testing_Menu")
 
     def get_testing_data_size(self):
         dataset_size = len(os.listdir("../TrainingData/Testing"))

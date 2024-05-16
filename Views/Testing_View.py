@@ -10,10 +10,22 @@ class Testing_View(QMainWindow):
 
 
 
-    def init_ui(self,MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(550, 798)
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+    def init_ui(self, MainWindow):
+
+
+        # Resize the main window
+
+
+        self.resize(553, 908)
+        self.setFixedWidth(550)
+        self.setFixedHeight(900)
+
+        # Create and set the central widget
+
+        # Set the window title
+        self.setWindowTitle("Neural Network Viewer")
+
+        self.centralwidget = QtWidgets.QWidget(parent=self)
         self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")

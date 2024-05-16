@@ -8,31 +8,31 @@ import tensorflow as tf
 class Application:
     def __init__(self):
 
+
+
+        # Debug info for tensor flow gpu detection
+
         gpus = tf.config.experimental.list_physical_devices('GPU')
         if gpus:
             try:
-                # Assuming you want to use the first GPU (RTX 4060)
                 tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
             except RuntimeError as e:
-                # Visible devices must be set before GPUs have been initialized
                 print(e)
 
-
+        print("Initializing App")
         self.app = QApplication(sys.argv)
-        print("app")
+        print("Initializing Menu")
         self.model = Menu()
-        print("model")
+        print("Initializing View")
         self.view = Menu_View()
-        print("view")
-        # At this point, both model and view are initialized but not connected.
+        print("Initializing controller")
         self.controller = Menu_Controller(self.model, self.view)
-        print("controller")
-        print("setting controller in view")
-        # Now that the controller is created, you can set it in the view.
+
+        print("Parsing controller to view")
         self.view.set_controller(self.controller)
-        print("set controller in view")
+        print("Showing Menu View")
         self.view.show()
-        print("show")
+
 
     def run(self):
         return self.app.exec()

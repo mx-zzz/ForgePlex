@@ -12,11 +12,17 @@ class Neural_Network_View(QMainWindow):
         super().__init__()
 
 
+
+
     def init_ui(self, MainWindow):
 
 
         # Resize the main window
+
+
         self.resize(553, 908)
+        self.setFixedWidth(550)
+        self.setFixedHeight(900)
 
         # Create and set the central widget
 
@@ -25,11 +31,9 @@ class Neural_Network_View(QMainWindow):
 
         # Set the window icon
         self.setWindowIcon(QIcon('Icons\\Icon1.png'))
-
-
         self.centralwidget = QWidget()
         self.setCentralWidget(self.centralwidget)
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget = QtWidgets.QWidget(parent=self)
         self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
@@ -892,6 +896,7 @@ class Neural_Network_View(QMainWindow):
         :return:
         """
         self.controller = controller
+
         self.init_ui(self)
 
 
