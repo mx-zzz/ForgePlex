@@ -1,4 +1,4 @@
-# Neural Network Development Application
+# ForgePlex
 
 ## Overview
 The Neural Network Development Application is a streamlined tool designed for training, evaluating, testing, and deploying predictive neural networks with ease. Launched in January 2024, this application features a user-friendly interface ideal for educational purposes and the early stages of neural network development.
@@ -18,7 +18,7 @@ The Neural Network Development Application is a streamlined tool designed for tr
 - TensorFlow 2.x for deep learning algorithms
 - PyQt6 for the graphical user interface
 - A GPU with CUDA support for TensorFlow operations to enhance performance
-- 
+  
 ### Installation
 Clone the repository to your local machine:
 ```bash
