@@ -2,12 +2,17 @@ from keras import Sequential
 from keras.layers import Conv1D, BatchNormalization, MaxPooling1D, Activation, Flatten, Dense
 from keras.optimizers import Adam
 from keras.regularizers import l1_l2
+from tensorflow.python.keras import regularizers
 
 
 class Neural_Network_Menu:
     def __init__(self):
         self.layer_types = {'layer1Type': 'Conv', 'layer2Type': 'Conv', 'layer3Type': 'Dense'}
         self.number_of_layers = 3
+
+
+
+
 
 
 
@@ -26,6 +31,8 @@ class Neural_Network_Menu:
             for layer_index in range(1, num_of_layers - 1):
                 print("Adding layer " + str(layer_index))
                 self.add_layer(layer_index)
+
+            self.model.add(Dense(self.categories_size))
 
             print("Saving model")
 
@@ -47,6 +54,9 @@ class Neural_Network_Menu:
         type = self.layers[index]["type"]
         batch_norm = self.layers[index]["batch_normalization"]
         dropout_rate = self.layers[index]["dropout_rate"]
+        l1 = self.layers[index]["l1_reg"]
+        l2 = self.layers[index]["l2_reg"]
+        reg = regularizers.l1_l2(l1=0.01, l2=0.01)
 
 
         if type == 'Conv':
@@ -54,7 +64,7 @@ class Neural_Network_Menu:
             filters = int(self.layers[index]["filters"])
             kernel = int(self.layers[index]["kernel"])
             flatten = self.layers[index]["flatten"]
-            self.model.add(Conv1D(filters=filters, kernel_size=kernel))
+            self.model.add(Conv1D(filters=filters, kernel_size=kernel,kernel_regularizer=reg))
 
             if (batch_norm):
                 self.model.add(BatchNormalization())
@@ -71,7 +81,7 @@ class Neural_Network_Menu:
         if type == 'Dense':
             dense_units = self.layers[index]["dense_units"]
 
-            self.model.add(Dense(dense_units))
+            self.model.add(Dense(dense_units),kernel_regularizer=reg)
 
             if (batch_norm):
                 self.model.add(BatchNormalization())
@@ -83,6 +93,8 @@ class Neural_Network_Menu:
 
 
         print("set_first_layer")
+
+
 
 
 
@@ -105,7 +117,7 @@ class Neural_Network_Menu:
             flatten = int(self.first_layer["flatten"])
 
             print("creating first layer conv")
-            self.model.add(Conv1D(filters=filters, kernel_size=kernel, input_shape=(self.time_steps, 7),
+            self.model.add(Conv1D(filters=filters, kernel_size=kernel, input_shape=(self.time_steps, self.categories_size),
                                   kernel_regularizer=l1_l2(l1=l1, l2=l2)))
 
             print("aids")
@@ -155,11 +167,13 @@ class Neural_Network_Menu:
         self.number_of_layers = data["general"]["layers"]
         print(self.number_of_layers)
 
-        self.learning_rate = data["compile"]["learning_rate"]
-        print(self.learning_rate)
-
         self.compiler = data["compile"]["compiler"]
         print(self.compiler)
+
+
+        self.categories_size = data["general"]["categories"]
+        print(self.compiler)
+
 
 
 
@@ -195,8 +209,9 @@ class Neural_Network_Menu:
     def compile(self,learning_rate,optimizer):
 
         if optimizer == "Adam":
-            optimizer = Adam(learning_rate=learning_rate)
+            optimizer = Adam()
         self.model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 
     def save_model(self,name):
         self.model.save(f"Saved Models\\{name}")
+        print(f"model saved a Saved Models\\{name}")

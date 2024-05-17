@@ -25,6 +25,8 @@ class Data_Handler:
 
         Y_data = to_categorical(Y_data.astype(int), num_classes=7)
 
+        # TODO make num classes variable
+
         # Check for NaN and infinity
         print("Y Contains NaN:", np.any(np.isnan(Y_data)))
         print("Y Contains Inf:", np.any(np.isinf(Y_data)))
@@ -35,21 +37,21 @@ class Data_Handler:
 
         return X_data, Y_data
 
-    def fetch_data(self, size, type):
+    def fetch_data(self, size, type, dir):
 
-
-
-        stride = 25 # Assuming you might still want to keep this for something else
+        stride = 25  # Assuming you might still want to keep this for something else
         Y_data = []
         X_data = []
 
-        directories = self.get_directories(type)
+        directories = self.get_directories(type, dir)
 
-        number_of_folders = len(os.listdir("../Processed Data"))
+        number_of_folders = len(os.listdir(dir))
 
         print(f"Number of folders: {number_of_folders}")
 
         size_from_each_folder = size // number_of_folders
+
+
 
         print(f"Size of data to extract from each folder: {size_from_each_folder}")
 
@@ -66,16 +68,16 @@ class Data_Handler:
 
             for filename in dir_list[:size]:
                 try:
-                    data = pd.read_csv(folder + "\\" + filename)
+                    data = pd.read_csv(folder + "/" + filename)
 
                     percent = math.floor(file_count / size * 100)
-                    print(f"Reading file {folder}\\{filename} ({percent}%)")
+                    print(f"Reading file {folder}/{filename} ({percent}%)")
                 except ValueError as e:
-                    raise ValueError(f"Error processing file {folder}\\{filename} : {str(e)}")
+                    raise ValueError(f"Error processing file {folder}/{filename} : {str(e)}")
                 data = data[1:]  # Skips the first row assuming it's a header or irrelevant
 
                 num_windows = (len(data) - self.data_length) // stride  # Calculate the number of possible windows
-                random_starts = random.sample(range(self.data_length, len(data)-self.data_length),
+                random_starts = random.sample(range(self.data_length, len(data) - self.data_length),
                                               k=min(num_windows, 100))  # Randomly choose start points
 
                 for start in random_starts:
@@ -88,20 +90,23 @@ class Data_Handler:
 
                 file_count += 1
 
-
         # Assuming format_data and check_data are methods that process and validate X_data and Y_data
         X_data, Y_data = self.format_data(X_data, Y_data)
         self.check_data(X_data, Y_data, type)
+
+
+        print("saving Debug data slices")
 
         self.save_data_slices(X_data, "X_data", 10)
         self.save_data_slices(Y_data, "Y_data", 10)
 
         return X_data, Y_data
 
-    def get_directories(self, type):
+    def get_directories(self, type, mainDir):
         directories = []
-        for folder in os.listdir("../Processed Data"):
-            path = "Processed Data" + "\\" + folder + "\\" + type
+        for folder in os.listdir(mainDir):
+            path = mainDir + "/" + folder
+            print(path)
             directories.append(path)
         return directories
 
@@ -124,6 +129,7 @@ class Data_Handler:
     def __init__(self,category_depth,data_length):
         self.category_depth = category_depth
         self.data_length = data_length
+        # TODO initalzie with num classes
 
 
     def save_data_slices(self,X, prefix, num_slices_to_save=10):
@@ -133,11 +139,11 @@ class Data_Handler:
                 reshaped_data = X.reshape(a, b * c)
                 for i, data_slice in enumerate(reshaped_data):
                     if i >= num_slices_to_save: break
-                    np.savetxt(f"{prefix}_{i}.csv", data_slice.reshape(b, c), delimiter=",")
+                    np.savetxt(f"Data Samples (Debuging)\\{prefix}_{i}.csv", data_slice.reshape(b, c), delimiter=",")
             elif dimensions == 2:
                 for i, data_slice in enumerate(X):
                     if i >= num_slices_to_save: break
-                    np.savetxt(f"{prefix}_{i}.csv", data_slice, delimiter=",")
+                    np.savetxt(f"Data Samples (Debuging)\\{prefix}_{i}.csv", data_slice, delimiter=",")
             else:
                 raise ValueError(f"Unexpected number of dimensions in {prefix}. Expected 2 or 3, got {dimensions}")
 

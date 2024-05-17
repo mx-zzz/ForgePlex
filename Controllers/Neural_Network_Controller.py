@@ -6,14 +6,10 @@ class Neural_Network_Controller:
         self.model = model
         self.view = view
 
-
     def pass_menu_controller(self, menu_controller):
         self.menu_controller = menu_controller
 
-
-
-
-    def create_network(self,data):
+    def create_network(self, data):
         print("set network data")
         self.model.set_data(data)
         print("creating network")
@@ -21,33 +17,21 @@ class Neural_Network_Controller:
         self.menu_controller.update_network_list()
         self.view.close()
 
-
-
-
-
-
-
         # Update other model fields as required
         # After updating the model, you can perform the network creation logic
 
-    def validate_name(self,data):
+    def validate_name(self, data):
 
         if self.null_check(data['general']['name']):
             return False
         else:
             return True
 
-
-
-    def nullError(self,input):
+    def nullError(self, input):
         QMessageBox.critical(self, "Error", input + " is empty or null")
 
-
-    def null_check(self,s)-> str:
+    def null_check(self, s) -> str:
         return s == "" or s.isspace()
-
-
-
 
     def typeToIndex(self, type_str):
         # Define a dictionary mapping type strings to their corresponding indexes
@@ -57,37 +41,33 @@ class Neural_Network_Controller:
         # If type_str is not found, return a default value, e.g., -1 or None
         return type_to_index.get(type_str, -1)
 
-    def on_type_change(self,layer):
+    def on_type_change(self, layer):
 
         print("layer type changed")
 
         if layer == 1:
-            self.model.layer_types['layer1Type'] = self.view.type_entry1.currentText()
-            print(self.view.type_entry1.currentText())
+            self.model.layer_types['layer1Type'] = self.view.type_entry_1.currentText()
+            print(self.view.type_entry_1.currentText())
             self.update_layer_type(layer, self.model.layer_types['layer1Type'])
 
         if layer == 2:
-            self.model.layer_types['layer2Type'] = self.view.type_entry2.currentText()
+            self.model.layer_types['layer2Type'] = self.view.type_entry_2.currentText()
             self.update_layer_type(layer, self.model.layer_types['layer2Type'])
 
         if layer == 3:
-            self.model.layer_types['layer3Type'] = self.view.type_entry3.currentText()
+            self.model.layer_types['layer3Type'] = self.view.type_entry_3.currentText()
             self.update_layer_type(layer, self.model.layer_types['layer3Type'])
 
-
-
-
-
-
-    def update_layer_type(self,layer, type):
+    def update_layer_type(self, layer, type):
 
         print("updating layer type")
 
         print(layer)
         print(type)
 
-        cnn_settings = ['kernal_entry','kernal_label','filters_label','pool_label','pool_entry','filters_entry']
-        dense_settings = ['dense_entry','dense_label']
+        cnn_settings = ['kernel_entry_', 'kernel_label_', 'filters_label_', 'pool_label_', 'pool_entry_',
+                        'filters_entry_', 'flat_box_', 'flat_label_']
+        dense_settings = ['dense_entry_', 'dense_label_']
         try:
             if type == "Dense":
                 for widget in cnn_settings:
@@ -101,8 +81,6 @@ class Neural_Network_Controller:
                     print(f"updating {widget}")
                     getattr(self.view, att_name).show()
                     getattr(self.view, att_name).setEnabled(True)
-
-
 
             if type == "Conv":
                 for widget in cnn_settings:
@@ -120,20 +98,14 @@ class Neural_Network_Controller:
         except Exception as e:
             print(e)
 
-
-
-
-
-
-
-    def on_layer_box_change(self,event=None):
+    def on_layer_box_change(self, event=None):
         print("layer box changed")
-        layers = int(self.view.layers_entry.currentIndex())+1
+        layers = int(self.view.layers_entry.currentIndex()) + 1
 
-        print("layers amount selected: %d"%layers)
+        print("layers amount selected: %d" % layers)
 
         if layers != self.model.number_of_layers:
-            print("layers are to be changed to %d"%layers)
+            print("layers are to be changed to %d" % layers)
             self.model.number_of_layers = layers
             self.update_layers()
 
@@ -148,7 +120,6 @@ class Neural_Network_Controller:
         print("deleted layers")
 
         try:
-
 
             if self.model.number_of_layers == 1:
                 self.view.general_tab.addTab(self.view.tabReference1, "Layer 1")
@@ -165,11 +136,3 @@ class Neural_Network_Controller:
             # Your existing logic to clear and add tabs...
         except Exception as e:
             print(f"Error updating layers: {e}")
-
-
-
-
-
-
-
-

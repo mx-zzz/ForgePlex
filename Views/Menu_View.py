@@ -89,7 +89,7 @@ class Menu_View(QMainWindow):
     def handle_training_menu_btn(self):
         selected_network = self.get_selected_network()
         if selected_network is not None:
-            self.controller.open_training_menu()
+            self.controller.open_training_menu(selected_network)
 
     def handle_neural_network_menu_btn(self):
         self.controller.open_network_menu()

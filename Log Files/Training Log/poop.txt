@@ -1,0 +1,4 @@
+{
+    "model_name": "poop",
+    "epochs": "25"
+}

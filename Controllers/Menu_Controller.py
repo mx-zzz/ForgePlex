@@ -49,9 +49,9 @@ class Menu_Controller:
         self.open_secondary_window(self.network_view)
 
 
-    def open_training_menu(self):
+    def open_training_menu(self, selected_network):
         print("open training menu_controller")
-        self.training_model = Training_Menu(self.view.get_selected_network())
+        self.training_model = Training_Menu(selected_network)
         self.training_view = Training_View()
         self.training_controller = Training_Controller(self.training_model,self.training_view)
         self.training_view.set_controller(self.training_controller)

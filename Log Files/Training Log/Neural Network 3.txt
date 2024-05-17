@@ -1,0 +1,4 @@
+{
+    "model_name": "Neural Network 3",
+    "epochs": "20"
+}
