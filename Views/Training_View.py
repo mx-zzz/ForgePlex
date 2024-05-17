@@ -523,14 +523,14 @@ class Training_View(QMainWindow):
         self.verbiose_box.setCurrentIndex(1)
         self.batch_size_box.setValue(32)
 
-        self.enable_stop_box.setDisabled(True)
+        self.enable_stop_box.setChecked(False)
         self.monitor_var_box.setCurrentIndex(0)
         self.trigger_box.setCurrentIndex(0)
         self.restore_weights_box.setDisabled(True)
         self.tilll_stop_box.setValue(5)
 
 
-        self.enable_scheduler_box.setDisabled(True)
+        self.enable_stop_box.setChecked(False)
         self.decay_type_box.setCurrentIndex(0)
         self.rate_box.setValue(0.9)
         self.decay_start_box.setValue(5)
