@@ -1,4 +1,4 @@
 {
     "model_name": "Untitled Network",
-    "epochs": "40"
+    "epochs": "45"
 }
