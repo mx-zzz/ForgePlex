@@ -61,9 +61,9 @@ class Menu_Controller:
 
 
 
-    def open_testing_menu(self):
+    def open_testing_menu(self,selected_network):
         print("open testing menu_controller")
-        self.testing_model = Testing_Menu(self.view.get_selected_network())
+        self.testing_model = Testing_Menu(selected_network)
         self.testing_view = Testing_View()
         self.testing_controller = Testing_Controller(self.testing_model, self.testing_view)
         self.testing_view.set_controller(self.testing_controller)
