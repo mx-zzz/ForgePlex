@@ -1,6 +1,7 @@
+import os
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QFileDialog
 
 
 # View
@@ -10,7 +11,7 @@ class Testing_View(QMainWindow):
 
     def init_ui(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(546, 648)
+        MainWindow.resize(702, 797)
         font = QtGui.QFont()
         font.setBold(False)
         font.setItalic(False)
@@ -287,7 +288,7 @@ class Testing_View(QMainWindow):
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 10, 521, 751))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 10, 741, 751))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.fields_layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.fields_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
@@ -590,7 +591,7 @@ class Testing_View(QMainWindow):
                                         "}")
         self.fields_frame.setObjectName("fields_frame")
         self.general_box = QtWidgets.QGroupBox(parent=self.fields_frame)
-        self.general_box.setGeometry(QtCore.QRect(20, 0, 481, 441))
+        self.general_box.setGeometry(QtCore.QRect(10, 20, 591, 651))
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(10)
@@ -600,7 +601,7 @@ class Testing_View(QMainWindow):
         self.general_box.setTitle("")
         self.general_box.setObjectName("general_box")
         self.formLayoutWidget_14 = QtWidgets.QWidget(parent=self.general_box)
-        self.formLayoutWidget_14.setGeometry(QtCore.QRect(60, 40, 381, 401))
+        self.formLayoutWidget_14.setGeometry(QtCore.QRect(60, 50, 498, 121))
         self.formLayoutWidget_14.setObjectName("formLayoutWidget_14")
         self.general_form = QtWidgets.QFormLayout(self.formLayoutWidget_14)
         self.general_form.setContentsMargins(5, 0, 5, 0)
@@ -618,12 +619,12 @@ class Testing_View(QMainWindow):
         self.general_form.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.path_label)
         self.path_box = QtWidgets.QHBoxLayout()
         self.path_box.setObjectName("path_box")
-        self.lineEdit = QtWidgets.QLineEdit(parent=self.formLayoutWidget_14)
-        self.lineEdit.setObjectName("lineEdit")
-        self.path_box.addWidget(self.lineEdit)
-        self.pushButton = QtWidgets.QPushButton(parent=self.formLayoutWidget_14)
-        self.pushButton.setObjectName("pushButton")
-        self.path_box.addWidget(self.pushButton)
+        self.path_entry = QtWidgets.QLineEdit(parent=self.formLayoutWidget_14)
+        self.path_entry.setObjectName("path_entry")
+        self.path_box.addWidget(self.path_entry)
+        self.select_button = QtWidgets.QPushButton(parent=self.formLayoutWidget_14)
+        self.select_button.setObjectName("select_button")
+        self.path_box.addWidget(self.select_button)
         self.general_form.setLayout(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.path_box)
         self.data_label = QtWidgets.QLabel(parent=self.formLayoutWidget_14)
         font = QtGui.QFont()
@@ -643,7 +644,15 @@ class Testing_View(QMainWindow):
         self.data_entry.setMinimumSize(QtCore.QSize(70, 0))
         self.data_entry.setObjectName("data_entry")
         self.general_form.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.data_entry)
-        self.sample_label = QtWidgets.QLabel(parent=self.formLayoutWidget_14)
+        self.formLayoutWidget = QtWidgets.QWidget(parent=self.general_box)
+        self.formLayoutWidget.setGeometry(QtCore.QRect(60, 230, 531, 321))
+        self.formLayoutWidget.setObjectName("formLayoutWidget")
+        self.visuals_form = QtWidgets.QFormLayout(self.formLayoutWidget)
+        self.visuals_form.setContentsMargins(5, 0, 5, 0)
+        self.visuals_form.setHorizontalSpacing(20)
+        self.visuals_form.setVerticalSpacing(30)
+        self.visuals_form.setObjectName("visuals_form")
+        self.sample_label = QtWidgets.QLabel(parent=self.formLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(10)
@@ -651,8 +660,8 @@ class Testing_View(QMainWindow):
         font.setItalic(False)
         self.sample_label.setFont(font)
         self.sample_label.setObjectName("sample_label")
-        self.general_form.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.sample_label)
-        self.samples_entry = QtWidgets.QSpinBox(parent=self.formLayoutWidget_14)
+        self.visuals_form.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.sample_label)
+        self.samples_entry = QtWidgets.QSpinBox(parent=self.formLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(0)
@@ -660,65 +669,39 @@ class Testing_View(QMainWindow):
         self.samples_entry.setSizePolicy(sizePolicy)
         self.samples_entry.setMinimumSize(QtCore.QSize(70, 0))
         self.samples_entry.setObjectName("samples_entry")
-        self.general_form.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.samples_entry)
-        self.samplesize_label = QtWidgets.QLabel(parent=self.formLayoutWidget_14)
+        self.visuals_form.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.samples_entry)
+        self.conmat_label = QtWidgets.QLabel(parent=self.formLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(10)
         font.setBold(True)
         font.setItalic(False)
-        self.samplesize_label.setFont(font)
-        self.samplesize_label.setObjectName("samplesize_label")
-        self.general_form.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.samplesize_label)
-        self.samplesize_box = QtWidgets.QCheckBox(parent=self.formLayoutWidget_14)
-        self.samplesize_box.setText("")
-        self.samplesize_box.setObjectName("samplesize_box")
-        self.general_form.setWidget(3, QtWidgets.QFormLayout.ItemRole.FieldRole, self.samplesize_box)
-        self.rand_label = QtWidgets.QLabel(parent=self.formLayoutWidget_14)
+        self.conmat_label.setFont(font)
+        self.conmat_label.setObjectName("conmat_label")
+        self.visuals_form.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.conmat_label)
+        self.auc_label = QtWidgets.QLabel(parent=self.formLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(10)
         font.setBold(True)
         font.setItalic(False)
-        self.rand_label.setFont(font)
-        self.rand_label.setObjectName("rand_label")
-        self.general_form.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.rand_label)
-        self.rand_box = QtWidgets.QCheckBox(parent=self.formLayoutWidget_14)
-        self.rand_box.setText("")
-        self.rand_box.setObjectName("rand_box")
-        self.general_form.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.rand_box)
-        self.zero_label = QtWidgets.QLabel(parent=self.formLayoutWidget_14)
-        font = QtGui.QFont()
-        font.setFamily("Calibri")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setItalic(False)
-        self.zero_label.setFont(font)
-        self.zero_label.setObjectName("zero_label")
-        self.general_form.setWidget(5, QtWidgets.QFormLayout.ItemRole.LabelRole, self.zero_label)
-        self.zero_box = QtWidgets.QCheckBox(parent=self.formLayoutWidget_14)
-        self.zero_box.setText("")
-        self.zero_box.setObjectName("zero_box")
-        self.general_form.setWidget(5, QtWidgets.QFormLayout.ItemRole.FieldRole, self.zero_box)
-        self.mse_label = QtWidgets.QLabel(parent=self.formLayoutWidget_14)
-        font = QtGui.QFont()
-        font.setFamily("Calibri")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setItalic(False)
-        self.mse_label.setFont(font)
-        self.mse_label.setObjectName("mse_label")
-        self.general_form.setWidget(6, QtWidgets.QFormLayout.ItemRole.LabelRole, self.mse_label)
-        self.mse_box = QtWidgets.QCheckBox(parent=self.formLayoutWidget_14)
-        self.mse_box.setText("")
-        self.mse_box.setObjectName("mse_box")
-        self.general_form.setWidget(6, QtWidgets.QFormLayout.ItemRole.FieldRole, self.mse_box)
+        self.auc_label.setFont(font)
+        self.auc_label.setObjectName("auc_label")
+        self.visuals_form.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.auc_label)
+        self.conmat_box = QtWidgets.QCheckBox(parent=self.formLayoutWidget)
+        self.conmat_box.setText("")
+        self.conmat_box.setObjectName("conmat_box")
+        self.visuals_form.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.conmat_box)
+        self.auc_box = QtWidgets.QCheckBox(parent=self.formLayoutWidget)
+        self.auc_box.setText("")
+        self.auc_box.setObjectName("auc_box")
+        self.visuals_form.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.auc_box)
         self.time_elapsed_label = QtWidgets.QLabel(parent=self.fields_frame)
         self.time_elapsed_label.setGeometry(QtCore.QRect(170, 790, 221, 16))
         self.time_elapsed_label.setObjectName("time_elapsed_label")
         self.main_button = QtWidgets.QPushButton(parent=self.fields_frame)
         self.main_button.setEnabled(True)
-        self.main_button.setGeometry(QtCore.QRect(80, 470, 351, 31))
+        self.main_button.setGeometry(QtCore.QRect(80, 630, 351, 31))
         font = QtGui.QFont()
         font.setFamily("Segoe UI")
         font.setPointSize(12)
@@ -730,7 +713,7 @@ class Testing_View(QMainWindow):
         self.fields_layout.addWidget(self.fields_frame)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 546, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 702, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
@@ -740,29 +723,81 @@ class Testing_View(QMainWindow):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
+        #temproarily hiden till implemented
+        self.samples_entry.hide()
+        self.sample_label.hide()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Testing Menu"))
         self.title_label.setText(_translate("MainWindow", "Test Network"))
         self.path_label.setText(_translate("MainWindow", "Test Data Path"))
-        self.pushButton.setText(_translate("MainWindow", "Select Folder"))
+        self.select_button.setText(_translate("MainWindow", "Select Folder"))
         self.data_label.setText(_translate("MainWindow", "Dataset Size"))
         self.sample_label.setText(_translate("MainWindow", "Samples Shown"))
-        self.samplesize_label.setText(_translate("MainWindow", "Sample Size"))
-        self.rand_label.setText(_translate("MainWindow", "Random Control"))
-        self.zero_label.setText(_translate("MainWindow", "Zero Control"))
-        self.mse_label.setText(_translate("MainWindow", "Mean Squared Error"))
+        self.conmat_label.setText(_translate("MainWindow", "Show Confusion Matrix"))
+        self.auc_label.setText(_translate("MainWindow", "Show AUC Curve"))
         self.time_elapsed_label.setText(_translate("MainWindow", "Time Elapsed : "))
         self.main_button.setText(_translate("MainWindow", "Test"))
 
+
     def handle_test_btn(self):
-        pass
+        options = self.get_testing_options()
+        self.controller.handle_test_btn(options)
+
+
+    def get_testing_options(self):
+        options = {
+            'conmat_box': self.conmat_box.isChecked(),
+            'auc_box': self.auc_box.isChecked()
+        }
 
 
     def set_controller(self, controller):
 
         self.controller = controller
         self.init_ui(self)
+
+    def get_testing_data_size(self):
+        return self.data_entry.value()
+
+
+
+    def set_bindings(self):
+        self.select_button.clicked.connect(self.handle_select_button)
+        self.main_button.clicked.connect(self.handle_test_btn)
+
+    def handle_select_button(self):
+        folder_path = self.select_folder()
+        if folder_path:
+            self.path_entry.setText(folder_path)
+
+    def select_folder(self):
+        options = QFileDialog.Option.ShowDirsOnly
+        folder_path = QFileDialog.getExistingDirectory(self, "Select Folder", "", options)
+        return folder_path
+
+    def get_test_path(self):
+        if self.path_entry :
+            return self.path_entry.text()
+        pass
+
+
+    def set_controller(self, controller):
+        self.controller = controller
+        self.init_ui(self)
+        self.retranslateUi(self)
+        self.set_bindings()
+        self.init_values()
+
+    def init_values(self):
+        pass
+
+
+
+
+
 
 
 

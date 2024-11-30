@@ -97,7 +97,7 @@ class Menu_View(QMainWindow):
     def handle_testing_menu_btn(self):
         selected_network = self.get_selected_network()
         if selected_network is not None:
-            self.controller.open_testing_menu()
+            self.controller.open_testing_menu(selected_network)
 
     def set_controller(self, controller):
         self.controller = controller

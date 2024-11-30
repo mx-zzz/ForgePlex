@@ -959,6 +959,7 @@ class Training_View(QMainWindow):
         self.layers_tab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(TrainingMenu)
 
+
     def __init__(self):
         super().__init__()
 
