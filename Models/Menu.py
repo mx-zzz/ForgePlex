@@ -1,9 +1,8 @@
-from Utility.Network_Handler import Network_Handler
+
 import os
 
 class Menu:
     def __init__(self):
-        self.nn = Network_Handler()
         self.network_list = []
         self.generate_networks()
         print("init model")

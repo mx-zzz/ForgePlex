@@ -42,16 +42,18 @@ class Training_Menu:
 
 
 
-        category_depth = model_info["inputs"][0]["shape"][2]
+        bin_num = model_info["inputs"][0]["shape"][2]
         length = model_info["inputs"][0]["shape"][1]
 
-        print(f"Category depth of selected model: {category_depth}")
+        print(f"Number of Bins for selected model: {bin_num}")
         print(f"Length of selected model: {length}")
 
 
 
 
-        self.data_handler = Data_Handler(category_depth,length)
+
+
+        self.data_handler = Data_Handler(bin_num,length,self.subfolders)
 
 
         if self.data_source == 0:
