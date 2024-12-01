@@ -107,7 +107,7 @@ The primary purpose of this application is to process and analyze time-series da
 
 ### Folder Structure
 
-```plaintext
+
 ├── Saved Models/            # Stores trained neural network models
 ├── Icons/                   # Icons for the graphical interface
 ├── Utility/                 # Helper scripts for logging and model information
