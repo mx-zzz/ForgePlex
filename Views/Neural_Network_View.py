@@ -13,7 +13,6 @@ class Neural_Network_View(QMainWindow):
 
 
 
-
     def init_ui(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(535, 1055)
@@ -1269,7 +1268,7 @@ class Neural_Network_View(QMainWindow):
         self.time_label.setText(_translate("MainWindow", "Time Step"))
         self.layers_label.setText(_translate("MainWindow", "Layers"))
         self.name_label.setText(_translate("MainWindow", "Model Name"))
-        self.categories_label.setText(_translate("MainWindow", "Categories"))
+        self.categories_label.setText(_translate("MainWindow", "Bins/Classes"))
         self.compiler_label.setText(_translate("MainWindow", "Compiler"))
         self.main_button.setText(_translate("MainWindow", "Create"))
 

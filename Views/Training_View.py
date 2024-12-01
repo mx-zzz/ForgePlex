@@ -1094,8 +1094,8 @@ class Training_View(QMainWindow):
         self.valid_method_box.setCurrentIndex(0)
         self.valid_method_box.show()
 
-        self.train_path_entry.setText(r"C:\Users\byzan\PycharmProjects\ForgePlex\TrainingData\Training")
-        self.valid_path_entry.setText(r"C:\Users\byzan\PycharmProjects\ForgePlex\TrainingData\Testing")
+        self.train_path_entry.setText(r"TrainingData\Training")
+        self.valid_path_entry.setText(r"TrainingData\Testing")
 
         self.data_source_box.addItem("Split Existing Data")
         self.data_source_box.addItem("Use Seperate Test Data")
