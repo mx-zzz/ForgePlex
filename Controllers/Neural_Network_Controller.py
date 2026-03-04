@@ -114,24 +114,24 @@ class Neural_Network_Controller:
         print("Updating Layers")
 
         # Clear all existing tabs
-        while self.view.general_tab.count() > 0:
-            self.view.general_tab.removeTab(0)
+        while self.view.layers_tab.count() > 0:
+            self.view.layers_tab.removeTab(0)
 
         print("deleted layers")
 
         try:
 
             if self.model.number_of_layers == 1:
-                self.view.general_tab.addTab(self.view.tabReference1, "Layer 1")
+                self.view.layers_tab.addTab(self.view.tabReference1, "Layer 1")
 
             if self.model.number_of_layers == 2:
-                self.view.general_tab.addTab(self.view.tabReference1, "Layer 1")
-                self.view.general_tab.addTab(self.view.tabReference2, "Layer 2")
+                self.view.layers_tab.addTab(self.view.tabReference1, "Layer 1")
+                self.view.layers_tab.addTab(self.view.tabReference2, "Layer 2")
 
             if self.model.number_of_layers == 3:
-                self.view.general_tab.addTab(self.view.tabReference1, "Layer 1")
-                self.view.general_tab.addTab(self.view.tabReference2, "Layer 2")
-                self.view.general_tab.addTab(self.view.tabReference3, "Layer 3")
+                self.view.layers.addTab(self.view.tabReference1, "Layer 1")
+                self.view.layers_tab.addTab(self.view.tabReference2, "Layer 2")
+                self.view.layers_tab.addTab(self.view.tabReference3, "Layer 3")
 
             # Your existing logic to clear and add tabs...
         except Exception as e:

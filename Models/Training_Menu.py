@@ -7,11 +7,10 @@ import time
 import tensorflow as tf
 from sklearn.model_selection import KFold
 from tensorflow.keras.optimizers import Adam
-from Utility import Tf_Network
+
 from keras.models import load_model
 from Utility.Data_Handler import Data_Handler
-from Utility.Tf_Network import Tf_Network
-from Utility.Test_Log import Test_Log
+
 from Utility.Training_Log import Training_Log
 import tensorflow as tf
 from Utility.ModelData import get_model_info
