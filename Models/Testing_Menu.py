@@ -27,7 +27,7 @@ class Testing_Menu:
         self.load_model(self.model_name)
         self.dataset_size = dataset_size
         self.dir = dir
-        self.options = options
+        self.options = options or {'conmat_box': False, 'auc_box': False}
 
 
 
@@ -43,8 +43,24 @@ class Testing_Menu:
 
 
 
-        category_depth = model_info["inputs"][0]["shape"][2]
-        length = model_info["inputs"][0]["shape"][1]
+        input_shape = None
+        if model_info.get("inputs"):
+            input_shape = model_info["inputs"][0].get("shape")
+
+        if not isinstance(input_shape, list) or len(input_shape) < 3:
+            raise ValueError(
+                f"Unable to infer model input shape from saved model metadata: {input_shape}. "
+                "Expected rank-3 shape like [None, time_steps, features]."
+            )
+
+        category_depth = input_shape[2]
+        length = input_shape[1]
+
+        if category_depth is None or length is None:
+            raise ValueError(
+                f"Model input shape contains undefined dimensions: {input_shape}. "
+                "Please use a saved model with fixed time_steps and feature depth."
+            )
 
         print(f"Category depth of selected model: {category_depth}")
         print(f"Length of selected model: {length}")

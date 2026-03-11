@@ -1,4 +1,5 @@
 import os
+import traceback
 
 from Utility.ErrorDialog import ErrorDialog
 
@@ -34,6 +35,7 @@ class Testing_Controller:
             self.model.test(testing_data_size,test_path,options)
             print("Testing completed successfully!")
         except Exception as e:
+            traceback.print_exc()
             self.show_error(f"An error occurred during testing: {str(e)}")
 
     def get_testing_data_size(self):
