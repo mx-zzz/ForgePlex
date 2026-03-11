@@ -20,7 +20,7 @@ class Training_Menu:
         self.model_name = model_name
 
 
-    def train(self, trainOptions):
+    def train(self, train_options,dataset_options):
 
 
 
@@ -28,7 +28,7 @@ class Training_Menu:
 
         self.load_model(self.model_name)
 
-        self.setTrainingOptions(trainOptions)
+        self.setTrainingOptions(train_options)
 
 
         model_info = get_model_info("Saved Models//" + self.model_name)
@@ -52,7 +52,7 @@ class Training_Menu:
 
 
 
-        self.data_handler = Data_Handler(bin_num,length,self.subfolders)
+        self.data_handler = Data_Handler(bin_num,length,dataset_options,self.subfolders)
 
 
         if self.data_source == 0:

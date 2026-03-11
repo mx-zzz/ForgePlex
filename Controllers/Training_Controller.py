@@ -26,7 +26,7 @@ class Training_Controller:
             return
 
 
-        self.model.train(training_params)
+        self.model.train(training_params,self.dataset_config)
 
 
 
@@ -40,6 +40,12 @@ class Training_Controller:
             return(self.checkPath(training_dir))
         else:
             return(self.checkPath(training_dir) and self.checkPath(testing_dir))
+
+
+    def set_dataset_config(self, dataset_config):
+        self.dataset_config = dataset_config
+        print("received dataset config in training controller")
+        print(self.dataset_config)
 
 
 

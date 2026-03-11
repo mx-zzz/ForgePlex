@@ -1,14 +1,17 @@
 # Controller
 from PyQt6.QtCore import Qt
-from PySide6.QtWidgets import QListWidgetItem
+from PySide6.QtWidgets import QListWidgetItem, QDialog
 
+from Controllers.Dataset_Controller import Dataset_Controller
 from Controllers.Testing_Controller import Testing_Controller
 from Controllers.Training_Controller import Training_Controller
 from Models.Neural_Network_Menu import Neural_Network_Menu
 from Models.Testing_Menu import Testing_Menu
 from Models.Training_Menu import Training_Menu
+from Models.Dataset_Menu import Dataset_Menu
 from Views.Neural_Network_View import Neural_Network_View
 from Views.Testing_View import Testing_View
+from Views.Dataset_View import Dataset_View
 
 from Views.Training_View import Training_View
 
@@ -49,14 +52,37 @@ class Menu_Controller:
         self.open_secondary_window(self.network_view)
 
 
-    def open_training_menu(self, selected_network):
-        print("open training menu_controller")
-        self.training_model = Training_Menu(selected_network)
-        self.training_view = Training_View()
-        self.training_controller = Training_Controller(self.training_model,self.training_view)
-        self.training_view.set_controller(self.training_controller)
 
-        self.open_secondary_window(self.training_view)
+    def run_training_wizard(self, selected_network):
+        dataset_view = Dataset_View()
+        dataset_model = Dataset_Menu(selected_network)
+        dataset_dialog = Dataset_Controller(dataset_model, dataset_view)
+
+        dataset_result = dataset_dialog.exec()
+
+        if dataset_result != QDialog.DialogCode.Accepted:
+            print("Dataset step cancelled.")
+            return
+
+        self.dataset_config = dataset_dialog.get_config_dict()
+        print("DATASET CONFIG:")
+        print(self.dataset_config)
+        print("open dataset menu_controller")
+
+        print("open training menu_controller")
+
+        training_model = Training_Menu(selected_network)
+        training_view = Training_View()
+        training_controller = Training_Controller(training_model, training_view)
+        training_view.set_controller(training_controller)
+
+        # inject dataset config into training controller
+        training_controller.set_dataset_config(self.dataset_config)
+
+        self.open_secondary_window(training_view)
+
+
+
 
 
 
