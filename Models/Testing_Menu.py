@@ -106,7 +106,7 @@ class Testing_Menu:
         # Confusion Matrix
         cm = confusion_matrix(Y_Test_Classes, Y_Pred)
 
-        if self.options['conmat_box'] is True:
+        if self.options.get('conmat_box', False) is True:
             self.plot_confusion_matrix(cm)
 
 
@@ -115,7 +115,7 @@ class Testing_Menu:
         print("\nClassification Report:\n", report)
 
 
-        if self.options['auc_box'] is True:
+        if self.options.get('auc_box', False) is True:
             # AUC and ROC for each class
             self.plot_roc_curve(Y_Test, Y_Pred_Prob)
 

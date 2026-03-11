@@ -26,6 +26,9 @@ class Testing_Controller:
             return
 
 
+        if options is None:
+            options = {'conmat_box': False, 'auc_box': False}
+
         # If all checks are valid, proceed with testing
         try:
             self.model.test(testing_data_size,test_path,options)

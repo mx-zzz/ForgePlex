@@ -752,12 +752,7 @@ class Testing_View(QMainWindow):
             'conmat_box': self.conmat_box.isChecked(),
             'auc_box': self.auc_box.isChecked()
         }
-
-
-    def set_controller(self, controller):
-
-        self.controller = controller
-        self.init_ui(self)
+        return options
 
     def get_testing_data_size(self):
         return self.data_entry.value()
