@@ -27,7 +27,7 @@ class Testing_Menu:
         self.load_model(self.model_name)
         self.dataset_size = dataset_size
         self.dir = dir
-        self.options = options
+        self.options = options or {'conmat_box': False, 'auc_box': False}
 
 
 
@@ -43,8 +43,24 @@ class Testing_Menu:
 
 
 
-        category_depth = model_info["inputs"][0]["shape"][2]
-        length = model_info["inputs"][0]["shape"][1]
+        input_shape = None
+        if model_info.get("inputs"):
+            input_shape = model_info["inputs"][0].get("shape")
+
+        if not isinstance(input_shape, list) or len(input_shape) < 3:
+            raise ValueError(
+                f"Unable to infer model input shape from saved model metadata: {input_shape}. "
+                "Expected rank-3 shape like [None, time_steps, features]."
+            )
+
+        category_depth = input_shape[2]
+        length = input_shape[1]
+
+        if category_depth is None or length is None:
+            raise ValueError(
+                f"Model input shape contains undefined dimensions: {input_shape}. "
+                "Please use a saved model with fixed time_steps and feature depth."
+            )
 
         print(f"Category depth of selected model: {category_depth}")
         print(f"Length of selected model: {length}")
@@ -106,7 +122,7 @@ class Testing_Menu:
         # Confusion Matrix
         cm = confusion_matrix(Y_Test_Classes, Y_Pred)
 
-        if self.options['conmat_box'] is True:
+        if self.options.get('conmat_box', False) is True:
             self.plot_confusion_matrix(cm)
 
 
@@ -115,7 +131,7 @@ class Testing_Menu:
         print("\nClassification Report:\n", report)
 
 
-        if self.options['auc_box'] is True:
+        if self.options.get('auc_box', False) is True:
             # AUC and ROC for each class
             self.plot_roc_curve(Y_Test, Y_Pred_Prob)
 
