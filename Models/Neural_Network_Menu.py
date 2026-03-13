@@ -34,11 +34,13 @@ class Neural_Network_Menu:
                 self.add_layer(layer_index)
 
 
-            if self.task_type.lower() == "classification":
+            if self.task_type == "classification":
                 self.model.add(Dense(self.categories_size, activation="softmax"))
 
-            elif self.task_type.lower() == "regression":
+            elif self.task_type == "regression":
                 self.model.add(Dense(1, activation="linear"))
+
+            self.compile_model()
 
             print("Saving model")
 
@@ -67,7 +69,7 @@ class Neural_Network_Menu:
         dropout_rate = self.layers[index]["dropout_rate"]
         l1 = self.layers[index]["l1_reg"]
         l2 = self.layers[index]["l2_reg"]
-        reg = regularizers.l1_l2(l1=0.01, l2=0.01)
+        reg = regularizers.l1_l2(l1=l1, l2=l2)
 
 
         if type == 'Conv':
@@ -92,7 +94,7 @@ class Neural_Network_Menu:
         if type == 'Dense':
             dense_units = self.layers[index]["dense_units"]
 
-            self.model.add(Dense(dense_units),kernel_regularizer=reg)
+            self.model.add(Dense(dense_units, kernel_regularizer=reg))
 
             if (batch_norm):
                 self.model.add(BatchNormalization())
@@ -128,7 +130,7 @@ class Neural_Network_Menu:
             flatten = int(self.first_layer["flatten"])
 
             print("creating first layer conv")
-            self.model.add(Conv1D(filters=filters, kernel_size=kernel, input_shape=(self.time_steps, self.categories_size),
+            self.model.add(Conv1D(filters=filters, kernel_size=kernel, input_shape=(self.time_steps, self.input_features),
                                   kernel_regularizer=l1_l2(l1=l1, l2=l2)))
 
 
@@ -167,7 +169,7 @@ class Neural_Network_Menu:
 
 
 
-        self.task_type = data["general"]["task_type"]
+        self.task_type = data["general"]["task_type"].strip().lower()
         print("set_data")
         print(data)
 
@@ -186,6 +188,8 @@ class Neural_Network_Menu:
 
 
         self.categories_size = data["general"]["categories"]
+        # Legacy fallback: older metadata may not include input_features yet.
+        self.input_features = data["general"].get("input_features", self.categories_size)
         print(self.compiler)
 
 
@@ -220,18 +224,18 @@ class Neural_Network_Menu:
 
 
 
-    def compile(self,learning_rate,optimizer):
+    def compile_model(self):
 
 
 
-        if self.task_type == "Classification":
+        if self.task_type == "classification":
             self.model.compile(
                 optimizer=self.compiler,
                 loss="categorical_crossentropy",
                 metrics=["accuracy"]
             )
 
-        elif self.task_type == "Regression":
+        elif self.task_type == "regression":
             self.model.compile(
                 optimizer=self.compiler,
                 loss="mean_squared_error",
