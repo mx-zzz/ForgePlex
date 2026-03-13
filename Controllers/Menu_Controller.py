@@ -46,10 +46,11 @@ class Menu_Controller:
         self.network_model = Neural_Network_Menu()
         self.network_view = Neural_Network_View()
         self.network_controller = Neural_Network_Controller(self.network_model,self.network_view)
-        self.network_view.set_controller(self.network_controller)
-        self.network_controller.pass_menu_controller(self)
 
-        self.open_secondary_window(self.network_view)
+        self.network_controller.pass_menu_controller(self)
+        self.open_secondary_window(self.network_controller.window)
+
+
 
 
 

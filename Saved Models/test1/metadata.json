@@ -1,0 +1,53 @@
+{
+    "general": {
+        "name": "test1",
+        "time_steps": 100,
+        "layers": "3 layers",
+        "categories": 7,
+        "task_type": "Classification"
+    },
+    "compile": {
+        "compiler": "Adam"
+    },
+    "layers": [
+        {
+            "type": "Conv",
+            "kernel": "3",
+            "filters": 32,
+            "dense_units": 99,
+            "pooling": "None",
+            "activation": "Tanh",
+            "dropout_rate": 0.2,
+            "batch_normalization": false,
+            "flatten": false,
+            "l1_reg": 0.0,
+            "l2_reg": 0.0
+        },
+        {
+            "type": "Conv",
+            "kernel": "3",
+            "filters": 64,
+            "dense_units": 99,
+            "pooling": "2",
+            "activation": "Tanh",
+            "dropout_rate": 0.0,
+            "batch_normalization": false,
+            "flatten": true,
+            "l1_reg": 0.0,
+            "l2_reg": 0.0
+        },
+        {
+            "type": "Dense",
+            "kernel": "3",
+            "filters": 64,
+            "dense_units": 99,
+            "pooling": "None",
+            "activation": "Tanh",
+            "dropout_rate": 0.0,
+            "batch_normalization": false,
+            "flatten": false,
+            "l1_reg": 0.0,
+            "l2_reg": 0.0
+        }
+    ]
+}

@@ -7,7 +7,7 @@ import time
 import tensorflow as tf
 from sklearn.model_selection import KFold
 from tensorflow.keras.optimizers import Adam
-
+import json
 from keras.models import load_model
 from Utility.Data_Handler import Data_Handler
 
@@ -18,6 +18,18 @@ from tensorflow.keras.callbacks import LearningRateScheduler
 class Training_Menu:
     def __init__(self, model_name):
         self.model_name = model_name
+
+    def get_task_type(self):
+        try:
+            with open("Saved Models//" + self.model_name + "//metadata.json", "r") as file:
+                data = json.load(file)
+                return data['general']['task_type']
+
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Error loading model info: {e}")
+            return None
+
+
 
 
     def train(self, train_options,dataset_options):

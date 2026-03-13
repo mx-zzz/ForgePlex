@@ -1,4 +1,4 @@
 {
     "model_name": "test",
-    "epochs": "70"
+    "epochs": "75"
 }

@@ -10,6 +10,9 @@ from PyQt6.QtWidgets import QDialog
 
 
 class Dataset_Controller(QDialog):
+
+
+
     def __init__(self, model,view,parent=None):
         super().__init__(parent)
         self.model = model
@@ -21,6 +24,25 @@ class Dataset_Controller(QDialog):
 
         self._connect_signals()
         self._apply_initial_state()
+        self.configure_options_by_task()
+
+
+
+
+    def configure_options_by_task(self):
+        task = self.model.get_task_type().lower()
+
+        if task == "classification":
+            self.view.task_entry.setCurrentText("Classification")
+            self.view.task_entry.setEnabled(False)  # Lock the task selection since it's determined by the model
+            self.view.label_mode_entry.setVisible(True)  # Hide label mode since regression doesn't use it
+            self.view.label_mode_label.setVisible(True)
+
+        if task == "regression":
+            self.view.task_entry.setCurrentText("Regression")
+            self.view.task_entry.setEnabled(False)  # Lock the task selection since it's determined by the model
+            self.view.label_mode_entry.setVisible(False)  # Hide label mode since regression doesn't use it
+            self.view.label_mode_label.setVisible(False)
 
     # -----------------------------
     # Setup helpers
@@ -40,6 +62,8 @@ class Dataset_Controller(QDialog):
     # UI state logic
     # -----------------------------
     def _update_visibility(self) -> None:
+
+        # TODO: some of this code isnt nessary as widgets are hidden based on the task type given by the model metadata
         """
         Show/hide widgets based on the current dataset config selections.
         This keeps the UI cleaner than disabling irrelevant fields.

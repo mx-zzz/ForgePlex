@@ -3,7 +3,8 @@ from keras.layers import Conv1D, BatchNormalization, MaxPooling1D, Activation, F
 from keras.optimizers import Adam
 from keras.regularizers import l1_l2
 from tensorflow.python.keras import regularizers
-
+import json
+import os
 
 class Neural_Network_Menu:
     def __init__(self):
@@ -32,13 +33,23 @@ class Neural_Network_Menu:
                 print("Adding layer " + str(layer_index))
                 self.add_layer(layer_index)
 
-            self.model.add(Dense(self.categories_size))
+
+            if self.task_type.lower() == "classification":
+                self.model.add(Dense(self.categories_size, activation="softmax"))
+
+            elif self.task_type.lower() == "regression":
+                self.model.add(Dense(1, activation="linear"))
 
             print("Saving model")
 
             self.save_model(self.name)
         except Exception as e:
             print(e)
+
+    def save_metadata(self, data):
+        os.makedirs(f"Saved Models\\{self.name}", exist_ok=True)
+        with open(f"Saved Models\\{self.name}\\metadata.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
 
 
 
@@ -120,7 +131,7 @@ class Neural_Network_Menu:
             self.model.add(Conv1D(filters=filters, kernel_size=kernel, input_shape=(self.time_steps, self.categories_size),
                                   kernel_regularizer=l1_l2(l1=l1, l2=l2)))
 
-            print("aids")
+
             if (batch_norm):
                 self.model.add(BatchNormalization())
 
@@ -154,6 +165,9 @@ class Neural_Network_Menu:
 
     def set_data(self,data):
 
+
+
+        self.task_type = data["general"]["task_type"]
         print("set_data")
         print(data)
 
@@ -208,9 +222,21 @@ class Neural_Network_Menu:
 
     def compile(self,learning_rate,optimizer):
 
-        if optimizer == "Adam":
-            optimizer = Adam()
-        self.model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+
+
+        if self.task_type == "Classification":
+            self.model.compile(
+                optimizer=self.compiler,
+                loss="categorical_crossentropy",
+                metrics=["accuracy"]
+            )
+
+        elif self.task_type == "Regression":
+            self.model.compile(
+                optimizer=self.compiler,
+                loss="mean_squared_error",
+                metrics=["mae"]
+            )
 
     def save_model(self,name):
         self.model.save(f"Saved Models\\{name}")

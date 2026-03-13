@@ -10,6 +10,9 @@ class Training_Controller:
 
 
 
+
+
+
     def handle_train_btn(self, training_params):
 
         print("handle_train_btn")
@@ -65,6 +68,9 @@ class Training_Controller:
         except Exception as e:
             print(f"An error occurred: {e}")
             return False
+
+
+
 
 
 
